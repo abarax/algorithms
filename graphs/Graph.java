@@ -16,7 +16,7 @@ public class Graph {
     public Vertex createVertex(String name)
     {
         Vertex n = new Vertex(name);
-        vertices.add(n);
+        this.vertices.add(n);
         return n;
     }
 
@@ -26,17 +26,16 @@ public class Graph {
 
         for (int i = 0; i < this.vertices.size(); i++)
         {
-            Vertex n1 = this.vertices.get(i);
+            Vertex v1 = this.vertices.get(i);
 
             for (int j = 0; j < this.vertices.size(); j++)
             {
-                Vertex n2 = this.vertices.get(j);
+                Vertex v2 = this.vertices.get(j);
 
-                Edge edge = n1.Arcs.FirstOrDefault(a => a.Child == n2);
-
-                if (edge != null)
-                {
-                    adj[i, j] = edge.weight;
+                for (Edge e : v1.edges) {
+                    if (e.child == v2)
+                        adj[i][j] = e.weight;
+                    
                 }
             }
         }
